@@ -8,6 +8,9 @@
 </head>
 
 <style>
+
+    /* Global styles ----------------- */
+
     * {
         margin: 0;
         padding: 0;
@@ -20,6 +23,9 @@
     span {
         font-weight: 600;
     }
+
+    /* Local styles ----------------- */
+
     .buttonStyle {
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 5px;
@@ -27,59 +33,59 @@
         width: 50%;
         cursor: pointer;
     }
-    .navBar {
+    #navBar {
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         width: 100%;
     }
-    .logo {
+    #navBar #logo {
         padding: 20px;
     }
-    .logo img {
+    #navBar #logo img {
         height: 35px;
     }
-    .dealership {
+    #dealership {
         position: relative;
         background-color: rgba(75, 75, 75, 0.1);
         height: 100%;
         width: 100%;
         padding: 20px 0;
     }
-    .dealershipsButton {
+    #dealership .dealershipsButton {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 50%;
         margin: 0 20px;
     }
-    .dealership-options {
+    #dealership .dealership-options {
         height: 100%;
         width: 100%;
         margin: 0 20px;
     }
-    .dealership-options select {
+    #dealership .dealership-options select {
         padding: 10px;
         margin-top: 20px;
     }
-    .showResult {
-        margin: 20px;
-    }
-    .searchButton {
+    #dealership .searchButton {
         margin-top: 20px;
     }
-    .searchButton:hover {
+    #dealership .searchButton:hover {
         background-color: rgba(0, 0, 0, 0.1);
+    }
+    .showResult {
+        margin: 20px;
     }
 
 </style>
 
 <body>
-    <div class="navBar">
+    <div id="navBar">
 
-        <div class="logo">
+        <div id="logo">
             <img src="/images/blueLogo.png"> 
         </div>
 
-        <div class="dealership">
+        <div id="dealership">
 
             <button class="dealershipsButton buttonStyle" onclick="showOptions()">
                 <p>Dealerships</p>
@@ -101,7 +107,6 @@
 
                 <button class="searchButton buttonStyle" type="submit" onclick="carSearchResults()">Find</button>
             </div>
-
         </div>
     </div>
 
