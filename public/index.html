@@ -17,6 +17,9 @@
         outline:none;
         background-color: white;
     }
+    span {
+        font-weight: 600;
+    }
     .buttonStyle {
         border: 1px solid rgba(0, 0, 0, 0.2);
         border-radius: 5px;
@@ -25,26 +28,33 @@
         cursor: pointer;
     }
     .navBar {
-        box-shadow: 1px 1px 1px 1px #d4d4d4;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         width: 100%;
-        display: flex;
-        align-content: center;
+    }
+    .logo {
+        padding: 20px;
+    }
+    .logo img {
+        height: 35px;
     }
     .dealership {
         position: relative;
+        background-color: rgba(75, 75, 75, 0.1);
         height: 100%;
-        width: 50%;
-        padding: 20px;
+        width: 100%;
+        padding: 20px 0;
     }
     .dealershipsButton {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 50%;
+        margin: 0 20px;
     }
     .dealership-options {
         height: 100%;
         width: 100%;
+        margin: 0 20px;
     }
     .dealership-options select {
         padding: 10px;
@@ -64,6 +74,10 @@
 
 <body>
     <div class="navBar">
+
+        <div class="logo">
+            <img src="/images/blueLogo.png"> 
+        </div>
 
         <div class="dealership">
 
@@ -92,7 +106,7 @@
     </div>
 
     <div class="showResult">
-        <h3></h3>
+        <p></p>
     </div>
 
 </body>
@@ -113,7 +127,7 @@
         } else {
             options.style.display = "none";
             buttonSelected.style.color = "black";
-            buttonSelected.style.backgroundColor = "rgba(0, 0, 0, 0.0)";
+            buttonSelected.style.backgroundColor = "white";
         }
     };
 
@@ -151,8 +165,8 @@
         let carCapitalised = car.charAt(0).toUpperCase() + car.slice(1, car.length);
 
         document.getElementsByClassName("showResult")[0]
-        .getElementsByTagName('h3')[0].innerHTML = 
-        `Display all ${carCapitalised} cars in ${locationCapitalised}`;
+        .getElementsByTagName('p')[0].innerHTML = 
+        `Displaying all <span>${carCapitalised}</span> cars in <span>${locationCapitalised}</span>`;
     };
 
 </script>
