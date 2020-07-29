@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bristol Street Motors</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+    button {
+        outline:none;
+        background-color: white;
+    }
+    .buttonStyle {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        height: 40px;
+        width: 50%;
+        cursor: pointer;
+    }
+    .navBar {
+        box-shadow: 1px 1px 1px 1px #d4d4d4;
+        width: 100%;
+        display: flex;
+        align-content: center;
+    }
+    .dealership {
+        position: relative;
+        height: 100%;
+        width: 50%;
+        padding: 20px;
+    }
+    .dealershipsButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+    }
+    .dealership-options {
+        height: 100%;
+        width: 100%;
+    }
+    .dealership-options select {
+        padding: 10px;
+        margin-top: 20px;
+    }
+    .showResult {
+        margin: 20px;
+    }
+    .searchButton {
+        margin-top: 20px;
+    }
+    .searchButton:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+</style>
+
+<body>
+    <div class="navBar">
+
+        <div class="dealership">
+
+            <button class="dealershipsButton buttonStyle" onclick="showOptions()">
+                <p>Dealerships</p>
+            </button>
+
+            <div class="dealership-options">
+                
+                <select class="location buttonStyle" onchange="findCarsInLocation(value)" >
+                    <option selected="true" disabled="disabled">Location</option>
+                    <option value='boston'>Boston</option>
+                    <option value='bradford'>Bradford</option>
+                    <option value='newcastle'>Newcastle</option>
+                    <option value='bristol'>Bristol</option>
+                </select>
+
+                <select class="manufacturer buttonStyle">
+                    <option selected="true" disabled="disabled">Manufacturer</option>
+                </select>
+
+                <button class="searchButton buttonStyle" type="submit" onclick="carSearchResults()">Find</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="showResult">
+        <h3></h3>
+    </div>
+
+</body>
+</html>
+
+<script>
+    // Set style for options on mount
+    document.getElementsByClassName('dealership-options')[0].style.display = "none";
+
+    // Toggle options display
+    const showOptions = () => {
+        const options = document.getElementsByClassName('dealership-options')[0];
+        const buttonSelected = document.getElementsByClassName('dealershipsButton')[0];
+        if (options.style.display === "none") {
+            options.style.display = "block";
+            buttonSelected.style.color = "#0779e4";
+            buttonSelected.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+        } else {
+            options.style.display = "none";
+            buttonSelected.style.color = "black";
+            buttonSelected.style.backgroundColor = "rgba(0, 0, 0, 0.0)";
+        }
+    };
+
+    // API data example
+    const carValues = {
+        boston: ['Volkswagon', 'Ford', 'Honda'],
+        bradford: ['Volkswagon', 'Ford', 'Honda', 'Nissan'],
+        newcastle: ['Volkswagon', 'Honda'],
+        bristol: ['Ford']
+    };
+
+    // Get names of carValue keys
+    const keys = Object.keys(carValues);
+
+    // Search through API and return car manufucturer options
+    const findCarsInLocation = (location) => {
+
+        const manufacturer = [];
+
+        keys.forEach(item => {
+            if (location === item) {
+                carValues[item].forEach(brand => {
+                    manufacturer.push(`<option value=${brand.toLowerCase()}> ${brand} </option>`);
+                });
+                document.getElementsByClassName("manufacturer")[0].innerHTML = manufacturer;
+            }
+        });
+    };
+
+    // Display result on screen
+    const carSearchResults = () => {
+        let location = document.getElementsByClassName("location")[0].value;
+        let car = document.getElementsByClassName("manufacturer")[0].value;
+        let locationCapitalised = location.charAt(0).toUpperCase() + location.slice(1, location.length);
+        let carCapitalised = car.charAt(0).toUpperCase() + car.slice(1, car.length);
+
+        document.getElementsByClassName("showResult")[0]
+        .getElementsByTagName('h3')[0].innerHTML = 
+        `Display all ${carCapitalised} cars in ${locationCapitalised}`;
+    };
+
+</script>
